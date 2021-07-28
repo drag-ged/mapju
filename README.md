@@ -1,2 +1,4 @@
-# mapju
-beta 3d model of jusl
+# MAP.JU
+Beta 3d model of jusl
+openSource website allowing students to visits and know JUSL
+Feel free to Contribute
