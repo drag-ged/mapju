@@ -11,8 +11,8 @@
     <script type="importmap">
       {
         "imports": {
-          "three": "https://unpkg.com/three@0.120.1/build/three.module.js",
-          "three/addons/": "https://unpkg.com/three@0.120.1/examples/jsm/"
+          "three": "https://unpkg.com/three@0.140.1/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.140.1/examples/jsm/"
         }
       }
     </script>
@@ -42,7 +42,7 @@
         loadingScreen.classList.add( 'fade-out' );
         // optional: remove loader from DOM via event listener
         loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
-  
+
         } );
         renderer = new THREE.WebGLRenderer({antialias:true});
         renderer.setSize(window.innerWidth,window.innerHeight);
@@ -236,7 +236,18 @@
     document.addEventListener('dblclick', () =>{
       camera.position.set(200,80,-200);
     })
-
+    //RAYCASTER
+    const raycaster = new THREE.Raycaster();
+    const mouseMove = new THREE.Vector2();
+    var hoverable = THREE.Object3D ;
+    window.addEventListener('click', onMouseOver)
+    function onMouseOver(){
+      mouseMove.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+      mouseMove.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+      raycaster.setFromCamera( mouseMove, camera );
+      const intersects = raycaster.intersectObjects( scene.children );
+      // console.log(intersects)
+    }
     //RESPONSIVE
     function onWindowResize() {
     renderer.setSize( window.innerWidth, window.innerHeight );
