@@ -18,6 +18,9 @@
     </script>
   </head>
   <body>
+    <div id="popupIee" class="popupIee">
+      IEE
+    </div>
     <script>
       function reRoute() {
       location.replace("./index.html")
@@ -37,6 +40,7 @@
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(55,window.innerWidth/window.innerHeight,0.1,2000);
         camera.position.set(200,80,-200);
+        camera.name = 'camera'
         const loadingManager = new THREE.LoadingManager( () => {
         const loadingScreen = document.getElementById( 'loading-screen' );
         loadingScreen.classList.add( 'fade-out' );
@@ -106,6 +110,8 @@
         var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
         var sphere = new THREE.Mesh( geometry, material );
         sphere.position.set(40,12,-20)
+        sphere.name = 'marker'
+        sphere.userData.name = 'IEE'
         scene.add( sphere );
         
         //POWER
@@ -113,6 +119,8 @@
         var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
         var sphere = new THREE.Mesh( geometry, material );
         sphere.position.set(37,12,-10)
+        sphere.name = 'marker'
+        sphere.userData.name = 'POWER'
         scene.add( sphere );
         
         //IT
@@ -120,6 +128,8 @@
         var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
         var sphere = new THREE.Mesh( geometry, material );
         sphere.position.set(18,12,-35)
+        sphere.name = 'marker'
+        sphere.userData.name = 'IT'
         scene.add( sphere );
         
         //CONST
@@ -127,6 +137,8 @@
         var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
         var sphere = new THREE.Mesh( geometry, material );
         sphere.position.set(11,12,-25)
+        sphere.name = 'marker'
+        sphere.userData.name = 'CONST'
         scene.add( sphere );
         
         //PRINTING
@@ -134,6 +146,8 @@
         var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
         var sphere = new THREE.Mesh( geometry, material );
         sphere.position.set(14,7,-30)
+        sphere.name = 'marker'
+        sphere.userData.name = 'PRINT'
         scene.add( sphere );
         
         //MR
@@ -141,6 +155,8 @@
         var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
         var sphere = new THREE.Mesh( geometry, material );
         sphere.position.set(43,12,-42)
+        sphere.name = 'marker'
+        sphere.userData.name = 'MR'
         scene.add( sphere );
         
         //PNB
@@ -148,6 +164,8 @@
         var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
         var sphere = new THREE.Mesh( geometry, material );
         sphere.position.set(32,12,-47)
+        sphere.name = 'marker'
+        sphere.userData.name = 'PNB'
         scene.add( sphere );
         
         //GIRLS HOSTEL
@@ -155,6 +173,8 @@
         var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
         var sphere = new THREE.Mesh( geometry, material );
         sphere.position.set(77,12,-37)
+        sphere.name = 'marker'
+        sphere.userData.name = 'GIRLS'
         scene.add( sphere );
 
         //BOYS HOSTELS
@@ -162,6 +182,8 @@
         var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
         var sphere = new THREE.Mesh( geometry, material );
         sphere.position.set(-57,12,2)
+        sphere.name = 'marker'
+        sphere.userData.name = 'BOYS'
         scene.add( sphere );
 
         //SMCC
@@ -169,6 +191,8 @@
         var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
         var sphere = new THREE.Mesh( geometry, material );
         sphere.position.set(60,12,-10)
+        sphere.name = 'marker'
+        sphere.userData.name = 'SMCC'
         scene.add( sphere );
 
         //LIBRARY
@@ -176,6 +200,8 @@
         var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
         var sphere = new THREE.Mesh( geometry, material );
         sphere.position.set( 30, 12, 2)
+        sphere.name = 'marker'
+        sphere.userData.name = 'LIBRARY'
         scene.add( sphere );
         
         //CAB
@@ -183,6 +209,8 @@
         var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
         var sphere = new THREE.Mesh( geometry, material );
         sphere.position.set(-30,12,-50)
+        sphere.name = 'marker'
+        sphere.userData.name = 'CAB'
         scene.add( sphere );
 
         //WORKSHOP
@@ -190,6 +218,8 @@
         var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
         var sphere = new THREE.Mesh( geometry, material );
         sphere.position.set(4,12,-13)
+        sphere.name = 'marker'
+        sphere.userData.name = 'WORKSHOP'
         scene.add( sphere );
 
         //MAP MODELS
@@ -227,7 +257,7 @@
         window.addEventListener( 'resize', onWindowResize );
 
         stats = new Stats();
-        document.body.appendChild( stats.dom );
+        //document.body.appendChild( stats.dom );
         
         animate();
       }
@@ -239,14 +269,107 @@
     //RAYCASTER
     const raycaster = new THREE.Raycaster();
     const mouseMove = new THREE.Vector2();
-    var hoverable = THREE.Object3D ;
-    window.addEventListener('click', onMouseOver)
+
+    window.addEventListener('mousemove', onMouseOver);
     function onMouseOver(){
       mouseMove.x = ( event.clientX / window.innerWidth ) * 2 - 1;
       mouseMove.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
       raycaster.setFromCamera( mouseMove, camera );
       const intersects = raycaster.intersectObjects( scene.children );
-      // console.log(intersects)
+      for(var i =0; i<intersects.length;i++)
+      if (intersects[i].object.name == 'marker'){
+        console.log('marker found'); 
+        renderPopUp(intersects[i].object.userData.name,intersects[i].point)
+        break;
+      }
+      else  {
+
+        destroyPopUp();
+        console.log('clear')
+      }
+      // console.log(intersects)  
+    }
+    function destroyPopUp(){
+      const popup = document.getElementById("popupIee");
+      popup.style.display = "none";
+      // const object = scene.getObjectByName('popup')
+      // object.geometry.dispose();
+      // object.material.dispose();
+      // scene.remove( object );
+    }
+    function renderPopUp(name, coords){
+      // var camera = scene.getObjectByName('camera');
+      // var vector = camera.position.clone()
+      // vector.applyMatrix( camera.matrixWorld );
+      // console.log(vector)
+      switch(name){
+          case 'IEE':
+            
+            const popup = document.getElementById("popupIee");
+            const canvas = document.querySelector('canvas'); 
+            const popUpPosition = coords;
+            // popUpPosition.setFromMatrixPostion(model.)
+            popup.style.display = "block";
+            popUpPosition.project(camera);
+            var widthHalf = canvas.width/2;
+            var heightHalf = canvas.height/2;
+
+            popUpPosition.x = (popUpPosition.x*widthHalf)+widthHalf;
+            popUpPosition.y = - (popUpPosition.y*heightHalf)+heightHalf;
+
+            popup.style.top = `${popUpPosition.y}px`;
+            popup.style.left = `${popUpPosition.x}px`;
+            console.log(popUpPosition);
+            console.log('instru');
+            
+            // var geometry = new THREE.BoxGeometry( 4, 4, 4);
+            // var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+            // var sphere = new THREE.Mesh( geometry, material );
+            // sphere.position.set(coords.x,coords.y,coords.z)
+            // sphere.name = 'popup'
+            // sphere.userData.name = 'popup'
+            // scene.add( sphere );
+            
+          break;
+          case 'POWER':
+          console.log('power')
+            break;
+          case 'IT':
+          console.log('it')
+            break;
+          case 'CONST':
+          console.log('const')
+            break;
+          case 'PRINT':
+          console.log('print')
+            break;
+          case 'SMCC':
+          console.log('smcc')
+            break;
+          case 'GIRLS':
+          console.log('girls hostel')
+            break;
+          case 'BOYS':
+          console.log('boys hostel')
+            break;
+          case 'PNB':
+          console.log('pnb')
+            break;
+          case 'MR':
+          console.log('muster roll')
+            break;
+          case 'LIBRARY':
+          console.log('library')
+            break;
+          case 'CAB':
+          console.log('cab')
+            break;
+          case 'WORKSHOP':
+          console.log('workshop')
+            break;
+        }
+        // var object = scene.getObjectByName('popup')
+        // object.lookat(vector) 
     }
     //RESPONSIVE
     function onWindowResize() {
