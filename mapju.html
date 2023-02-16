@@ -18,10 +18,75 @@
     </script>
   </head>
   <body>
-    <div id="popupIee" class="popupIee">
-      IEE
+    <div id="popupMAPJU" class="popup">
+      MAP.JU  
+    </div>
+    <div id="popupIee" class="popup">
+      Instrumentation and Electronics Engineering  
+    </div>
+    <div id="popupConst" class="popup">
+      Construction Engineering
+    </div>
+    <div id="popupPow" class="popup">
+      Power Engineering
+    </div>
+    <div id="popupIt" class="popup">
+      Information Technology
+    </div>
+    <div id="popupPrint" class="popup">
+      Printing Engineering
+    </div>
+    <div id="popupMR" class="popup">
+      Muster Roll
+    </div>
+    <div id="popupSMCC" class="popup">
+      School Of Mobile Computing
+    </div>
+    <div id="popupGirls" class="popup">
+      JUSL Girls Hostel
+    </div>
+    <div id="popupPNB" class="popup">
+      United Bank of India
+    </div>
+    <div id="popupLibrary" class="popup">
+      Library
+    </div>
+    <div id="popupCAB" class="popup">
+      Cricket Association of Bengal
+    </div>
+    <div id="popupWorkshop" class="popup">
+      Workshop
+    </div>
+    <div id="popupBoys" class="popup">
+      JUSL Boy's Hostel
     </div>
     <script>
+      var popup = document.getElementById("popupIee");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupConst");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupMR");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupPNB");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupGirls");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupBoys");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupPow");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupIt");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupPrint");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupCAB");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupWorkshop");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupSMCC");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupLibrary");
+      popup.style.display = "none";
       function reRoute() {
       location.replace("./index.html")
       }
@@ -290,7 +355,31 @@
       // console.log(intersects)  
     }
     function destroyPopUp(){
-      const popup = document.getElementById("popupIee");
+      var popup = document.getElementById("popupIee");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupConst");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupMR");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupPNB");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupGirls");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupBoys");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupPow");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupIt");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupPrint");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupCAB");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupWorkshop");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupSMCC");
+      popup.style.display = "none";
+      var popup = document.getElementById("popupLibrary");
       popup.style.display = "none";
       // const object = scene.getObjectByName('popup')
       // object.geometry.dispose();
@@ -304,10 +393,10 @@
       // console.log(vector)
       switch(name){
           case 'IEE':
-            
-            const popup = document.getElementById("popupIee");
-            const canvas = document.querySelector('canvas'); 
-            const popUpPosition = coords;
+
+            var popup = document.getElementById("popupIee");
+            var canvas = document.querySelector('canvas'); 
+            var popUpPosition = coords;
             // popUpPosition.setFromMatrixPostion(model.)
             popup.style.display = "block";
             popUpPosition.project(camera);
@@ -321,50 +410,224 @@
             popup.style.left = `${popUpPosition.x}px`;
             console.log(popUpPosition);
             console.log('instru');
-            
-            // var geometry = new THREE.BoxGeometry( 4, 4, 4);
-            // var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
-            // var sphere = new THREE.Mesh( geometry, material );
-            // sphere.position.set(coords.x,coords.y,coords.z)
-            // sphere.name = 'popup'
-            // sphere.userData.name = 'popup'
-            // scene.add( sphere );
-            
-          break;
+          
+            break;
           case 'POWER':
-          console.log('power')
+            
+            var popup = document.getElementById("popupPow");
+            var canvas = document.querySelector('canvas'); 
+            var popUpPosition = coords;
+            // popUpPosition.setFromMatrixPostion(model.)
+            popup.style.display = "block";
+            popUpPosition.project(camera);
+            var widthHalf = canvas.width/2;
+            var heightHalf = canvas.height/2;
+
+            popUpPosition.x = (popUpPosition.x*widthHalf)+widthHalf;
+            popUpPosition.y = - (popUpPosition.y*heightHalf)+heightHalf;
+
+            popup.style.top = `${popUpPosition.y}px`;
+            popup.style.left = `${popUpPosition.x}px`;
+            console.log(popUpPosition);
+            console.log('power')
             break;
           case 'IT':
-          console.log('it')
+            
+            var popup = document.getElementById("popupIt");
+            var canvas = document.querySelector('canvas'); 
+            var popUpPosition = coords;
+            // popUpPosition.setFromMatrixPostion(model.)
+            popup.style.display = "block";
+            popUpPosition.project(camera);
+            var widthHalf = canvas.width/2;
+            var heightHalf = canvas.height/2;
+
+            popUpPosition.x = (popUpPosition.x*widthHalf)+widthHalf;
+            popUpPosition.y = - (popUpPosition.y*heightHalf)+heightHalf;
+
+            popup.style.top = `${popUpPosition.y}px`;
+            popup.style.left = `${popUpPosition.x}px`;
+            console.log(popUpPosition);
+            console.log('it')
             break;
           case 'CONST':
-          console.log('const')
+          var popup = document.getElementById("popupConst");
+            var canvas = document.querySelector('canvas'); 
+            var popUpPosition = coords;
+            // popUpPosition.setFromMatrixPostion(model.)
+            popup.style.display = "block";
+            popUpPosition.project(camera);
+            var widthHalf = canvas.width/2;
+            var heightHalf = canvas.height/2;
+
+            popUpPosition.x = (popUpPosition.x*widthHalf)+widthHalf;
+            popUpPosition.y = - (popUpPosition.y*heightHalf)+heightHalf;
+
+            popup.style.top = `${popUpPosition.y}px`;
+            popup.style.left = `${popUpPosition.x}px`;
+            console.log(popUpPosition);
+            console.log('const')
             break;
           case 'PRINT':
+          var popup = document.getElementById("popupPrint");
+            var canvas = document.querySelector('canvas'); 
+            var popUpPosition = coords;
+            // popUpPosition.setFromMatrixPostion(model.)
+            popup.style.display = "block";
+            popUpPosition.project(camera);
+            var widthHalf = canvas.width/2;
+            var heightHalf = canvas.height/2;
+
+            popUpPosition.x = (popUpPosition.x*widthHalf)+widthHalf;
+            popUpPosition.y = - (popUpPosition.y*heightHalf)+heightHalf;
+
+            popup.style.top = `${popUpPosition.y}px`;
+            popup.style.left = `${popUpPosition.x}px`;
+            console.log(popUpPosition);
           console.log('print')
             break;
           case 'SMCC':
+          var popup = document.getElementById("popupSMCC");
+            var canvas = document.querySelector('canvas'); 
+            var popUpPosition = coords;
+            // popUpPosition.setFromMatrixPostion(model.)
+            popup.style.display = "block";
+            popUpPosition.project(camera);
+            var widthHalf = canvas.width/2;
+            var heightHalf = canvas.height/2;
+
+            popUpPosition.x = (popUpPosition.x*widthHalf)+widthHalf;
+            popUpPosition.y = - (popUpPosition.y*heightHalf)+heightHalf;
+
+            popup.style.top = `${popUpPosition.y}px`;
+            popup.style.left = `${popUpPosition.x}px`;
+            console.log(popUpPosition);
           console.log('smcc')
             break;
           case 'GIRLS':
+          var popup = document.getElementById("popupGirls");
+            var canvas = document.querySelector('canvas'); 
+            var popUpPosition = coords;
+            // popUpPosition.setFromMatrixPostion(model.)
+            popup.style.display = "block";
+            popUpPosition.project(camera);
+            var widthHalf = canvas.width/2;
+            var heightHalf = canvas.height/2;
+
+            popUpPosition.x = (popUpPosition.x*widthHalf)+widthHalf;
+            popUpPosition.y = - (popUpPosition.y*heightHalf)+heightHalf;
+
+            popup.style.top = `${popUpPosition.y}px`;
+            popup.style.left = `${popUpPosition.x}px`;
+            console.log(popUpPosition);
           console.log('girls hostel')
             break;
           case 'BOYS':
+          var popup = document.getElementById("popupBoys");
+            var canvas = document.querySelector('canvas'); 
+            var popUpPosition = coords;
+            // popUpPosition.setFromMatrixPostion(model.)
+            popup.style.display = "block";
+            popUpPosition.project(camera);
+            var widthHalf = canvas.width/2;
+            var heightHalf = canvas.height/2;
+
+            popUpPosition.x = (popUpPosition.x*widthHalf)+widthHalf;
+            popUpPosition.y = - (popUpPosition.y*heightHalf)+heightHalf;
+
+            popup.style.top = `${popUpPosition.y}px`;
+            popup.style.left = `${popUpPosition.x}px`;
+            console.log(popUpPosition);
           console.log('boys hostel')
             break;
           case 'PNB':
+          var popup = document.getElementById("popupPNB");
+            var canvas = document.querySelector('canvas'); 
+            var popUpPosition = coords;
+            // popUpPosition.setFromMatrixPostion(model.)
+            popup.style.display = "block";
+            popUpPosition.project(camera);
+            var widthHalf = canvas.width/2;
+            var heightHalf = canvas.height/2;
+
+            popUpPosition.x = (popUpPosition.x*widthHalf)+widthHalf;
+            popUpPosition.y = - (popUpPosition.y*heightHalf)+heightHalf;
+
+            popup.style.top = `${popUpPosition.y}px`;
+            popup.style.left = `${popUpPosition.x}px`;
+            console.log(popUpPosition);
           console.log('pnb')
             break;
           case 'MR':
+          var popup = document.getElementById("popupMR");
+            var canvas = document.querySelector('canvas'); 
+            var popUpPosition = coords;
+            // popUpPosition.setFromMatrixPostion(model.)
+            popup.style.display = "block";
+            popUpPosition.project(camera);
+            var widthHalf = canvas.width/2;
+            var heightHalf = canvas.height/2;
+
+            popUpPosition.x = (popUpPosition.x*widthHalf)+widthHalf;
+            popUpPosition.y = - (popUpPosition.y*heightHalf)+heightHalf;
+
+            popup.style.top = `${popUpPosition.y}px`;
+            popup.style.left = `${popUpPosition.x}px`;
+            console.log(popUpPosition);
           console.log('muster roll')
             break;
           case 'LIBRARY':
+          var popup = document.getElementById("popupLibrary");
+            var canvas = document.querySelector('canvas'); 
+            var popUpPosition = coords;
+            // popUpPosition.setFromMatrixPostion(model.)
+            popup.style.display = "block";
+            popUpPosition.project(camera);
+            var widthHalf = canvas.width/2;
+            var heightHalf = canvas.height/2;
+
+            popUpPosition.x = (popUpPosition.x*widthHalf)+widthHalf;
+            popUpPosition.y = - (popUpPosition.y*heightHalf)+heightHalf;
+
+            popup.style.top = `${popUpPosition.y}px`;
+            popup.style.left = `${popUpPosition.x}px`;
+            console.log(popUpPosition);
           console.log('library')
             break;
           case 'CAB':
+          var popup = document.getElementById("popupCAB");
+            var canvas = document.querySelector('canvas'); 
+            var popUpPosition = coords;
+            // popUpPosition.setFromMatrixPostion(model.)
+            popup.style.display = "block";
+            popUpPosition.project(camera);
+            var widthHalf = canvas.width/2;
+            var heightHalf = canvas.height/2;
+
+            popUpPosition.x = (popUpPosition.x*widthHalf)+widthHalf;
+            popUpPosition.y = - (popUpPosition.y*heightHalf)+heightHalf;
+
+            popup.style.top = `${popUpPosition.y}px`;
+            popup.style.left = `${popUpPosition.x}px`;
+            console.log(popUpPosition);
           console.log('cab')
             break;
           case 'WORKSHOP':
+          var popup = document.getElementById("popupWorkshop");
+            var canvas = document.querySelector('canvas'); 
+            var popUpPosition = coords;
+            // popUpPosition.setFromMatrixPostion(model.)
+            popup.style.display = "block";
+            popUpPosition.project(camera);
+            var widthHalf = canvas.width/2;
+            var heightHalf = canvas.height/2;
+
+            popUpPosition.x = (popUpPosition.x*widthHalf)+widthHalf;
+            popUpPosition.y = - (popUpPosition.y*heightHalf)+heightHalf;
+
+            popup.style.top = `${popUpPosition.y}px`;
+            popup.style.left = `${popUpPosition.x}px`;
+            console.log(popUpPosition);
           console.log('workshop')
             break;
         }
